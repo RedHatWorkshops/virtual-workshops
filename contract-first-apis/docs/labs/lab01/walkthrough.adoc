@@ -4,7 +4,7 @@
 :openshift-url: {openshift-host}/console
 
 [id='fuse-bonus-lab']
-= Fuse Online and 3scale Smart Discovery Bonus Lab
+= Contract-first API Development with Fuse Online + 3scale
 
 In this lab you will implement a simple API with Fuse Online and expose it using 3scale.
 
@@ -21,7 +21,7 @@ Red Hat Fuse integration solution empowers integration experts, application deve
 *Credentials:*
 
 Your username is: `{user-username}` +
-Your password is: `{user-password}`
+Your password is: `<assigned password from Instructor>`
 
 [type=walkthroughResource,serviceName=fuse]
 .Fuse Online
@@ -43,8 +43,6 @@ Your password is: `{user-password}`
 
 . Launch a new tab on your web browser.
 . Navigate to the Solution Explorer on that tab.
-. Click on the *Red Hat Fuse Online (Shared)* link.
-
 . Open your link:{fuse-url}[Red Hat Fuse Online, window="_blank", id="{context}-3"].
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.
@@ -89,7 +87,7 @@ image::images/04-create-integration.png[04-create-integration.png, role="integr8
 +
 image::images/n02-api-provider.png[n02-api-provider.png, role="integr8ly-img-responsive"]
 
-. Select *Create from scratch*
+. Select *Create*
 +
 image::images/n03-api-from-scratch.png[n03-api-from-scratch, role="integr8ly-img-responsive"]
 
@@ -179,7 +177,8 @@ _Congratulations! You've created an API Contract.  Next up is the API implementa
 image::images/n19-start-of-integration.png[n19-start-of-integration, role="integr8ly-img-responsive"]
 
 . Save the integration 
-+image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
++
+image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
 
 
 . Set the following values:
@@ -190,11 +189,13 @@ Click *`save`*
 image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
 
 . Click on *Create flow*
-+image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
++
+image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
 
 
 . Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
-+image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
++
+image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
 
 . Click on *LocationDB* from the catalog and then select *Invoke SQL*
 +
