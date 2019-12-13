@@ -1,9 +1,7 @@
-:walkthrough: Fuse Online and 3scale Smart Discovery Bonus Lab
+:walkthrough: Contract-first API Development with Fuse Online + 3scale
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
-:3scale-dev-portal-url: https://{user-username}.{openshift-app-host}/
 :openshift-url: {openshift-host}/console
-:user-password: openshift
 
 [id='fuse-bonus-lab']
 = Fuse Online and 3scale Smart Discovery Bonus Lab
@@ -25,16 +23,18 @@ Red Hat Fuse integration solution empowers integration experts, application deve
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=fuse]
 .Fuse Online
 ****
-* link:{fuse-url}[Fuse Online Console, window="_blank"]
+* link:{fuse-url}[Console, window="_blank"]
 ****
 
-[type=walkthroughResource]
-.3scale Admin Console
+[type=walkthroughResource,serviceName=3scale]
+.3Scale
 ****
-* link:{3scale-admin-url}[Console, window="_blank"]
+* link:{api-management-url}[Console, window="_blank"]
+* link:https://developers.redhat.com/products/3scale/overview/[3Scale Overview, window="_blank"]
+* link:https://www.3scale.net[3Scale Website, window="_blank"]
 ****
 
 [time=10]
@@ -45,7 +45,7 @@ Your password is: `{user-password}`
 . Navigate to the Solution Explorer on that tab.
 . Click on the *Red Hat Fuse Online (Shared)* link.
 
-. Open your link:{fuse-url}[Fuse Online Console, window="_blank"].
+. Open your link:{fuse-url}[Red Hat Fuse Online, window="_blank", id="{context}-3"].
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.
 +
@@ -241,7 +241,7 @@ _Congratulations. You successfully published the integration. (Wait for few minu
 
 We will use 3scale to secure our newly deployed Fuse Online integration. We introduce a new feature, Smart Discovery, which detects that a new API was deployed to OpenShift.
 
-. Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
+. Log in to link:{api-management-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
 image::images/01-login.png[01-login, role="integr8ly-img-responsive"]
 
