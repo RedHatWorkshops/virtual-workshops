@@ -74,7 +74,7 @@ image::images/02-click-validate.png[02-click-validate, role="integr8ly-img-respo
 image::images/03-connection-details.png[03-connection-details, role="integr8ly-img-responsive"]
 
 [type=verification]
-Verify that the *`Location Database`* is successfully created.
+Was the *`Location Database`* is successfully created?
 
 [type=verificationFail]
 Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
@@ -170,7 +170,11 @@ image::images/n17-post-response-type.png[n17-post-response-type, role="integr8ly
 +
 image::images/n18-post-operation-id.png[n18-post-operation-id, role="integr8ly-img-responsive"]
 +
-_Congratulations! You've created an API Contract.  Next up is the API implementation_
+[type=verification]
+Did you successfully create a new API Contract?.  If so, next up is the API implementation
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
 
 [time=5]
 [id="implement-api"]
@@ -236,7 +240,12 @@ image::images/n31-data-map-response.png[n31-data-map-response, role="integr8ly-i
 +
 image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
 +
-_Congratulations. You successfully published the integration. (Wait for few minutes to build and publish the integration)_
+[type=verification]
+Did you successfully publish the integration? (Wait for few minutes to build and publish the integration)
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+
 
 [time=5]
 [id="secure-api-smart-discovery"]
@@ -298,6 +307,12 @@ image::images/05-authentication.png[05-authentication, role="integr8ly-img-respo
 
 . Click on *Update Service*.
 
+[type=verification]
+Did your *Service* update correctly?
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+
 [time=5]
 [id="update-apicast-config"]
 == Update the APIcast configuration
@@ -358,6 +373,12 @@ image::images/07b-getall-rule.png[07b-getall-rule, role="integr8ly-img-responsiv
 image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-responsive"]
 +
 _You should expect to get an error message._
++
+[type=verification]
+Did you get an error message asking you to create an Application Plan?
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
 
 [time=5]
 [id="create-application-plan"]
@@ -396,6 +417,12 @@ image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-r
 . Select *basic-integration* as the _Application Plan_. Select *Default* as the _Service Plan_. Enter *i-integration-evals02* as the _Name_. Click *Create Applicatio*n. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration-evals02` application.
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
++
+[type=verification]
+Did you see a newly created *User Key*?
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
 
 [time=5]
 [id="complete-apicast-config"]
@@ -430,6 +457,12 @@ image::images/08aa-back-to-integration.png[08aa-back-to-integration, role="integ
 . Click on the *Promote v.1 to Production* button to promote your configuration from staging to production.
 +
 image::images/08a-promote-production.png[08a-promote-production, role="integr8ly-img-responsive"]
++
+[type=verification]
+Were you able to promote your API to Production?
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
 
 [time=3]
 [id="secure-api-smart-discovery"]
@@ -478,6 +511,12 @@ image::images/17-activity-refresh.png[17-activity-refresh, role="integr8ly-img-r
       "lng" : "-5.91531"
     }
   }`
+
+[type=verification]
+Were you able to see your newly created entry via the application URL in the browser?
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
 
 [time=1]
 [id="summary"]
