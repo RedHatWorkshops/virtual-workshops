@@ -1,9 +1,9 @@
-:walkthrough: Contract-first API Development with Fuse Online + 3scale
+:walkthrough: Contract-first APIs
 :3scale-url: https://www.3scale.net/
 :3scale-admin-url: https://{user-username}-admin.{openshift-app-host}/p/login
 :openshift-url: {openshift-host}/console
 
-[id='fuse-bonus-lab']
+[id='contract-first-lab']
 = Contract-first API Development with Fuse Online + 3scale
 
 In this lab you will implement a simple API with Fuse Online and expose it using 3scale.
@@ -184,7 +184,7 @@ image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
 . Set the following values:
 ** Integration Name: *`addLocation`*
 ** Description: *`Add Location`*
-Click *`save`*
+Click *Save*
 +
 image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
 
@@ -193,7 +193,7 @@ image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img
 image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
 
 
-. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
+. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint.
 +
 image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
 
@@ -201,7 +201,7 @@ image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-i
 +
 image::images/n24-invoke-sql.png[n24-invoke-sql, role="integr8ly-img-responsive"]
 
-. Enter the SQL statement and click *Done*.
+. Enter the SQL statement and click *Next* (leaving *Batch update* set to `No`).
 +
 [source,bash]
 ----
@@ -210,7 +210,7 @@ INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name
 +
 image::images/n25-sql-statement.png[n25-sql-statement, role="integr8ly-img-responsive"]
 
-. In between top API endpoint and the Database connection, click on the plus sign and select _Add step_ and select _Data Mapper_
+. In between top API endpoint and the Database connection, click on the plus sign and select _Data Mapper_
 +
 image::images/n26-input-data-mapping.png[n26-input-data-mapping, role="integr8ly-img-responsive"]
 +
@@ -220,11 +220,9 @@ image::images/n27-choose-data-mapping.png[n27-choose-data-mapping, role="integr8
 +
 image::images/n28-data-map-db.png[n28-data-map-db, role="integr8ly-img-responsive"]
 
-. In between the Database connection and the endpoint, click on the plus sign and select _Add step_ and select _Data Mapper_
+. In between the Database connection and the endpoint, click on the plus sign and select _Data Mapper_
 +
 image::images/n29-output-data-mapping.png[n29-output-data-mapping, role="integr8ly-img-responsive"]
-+
-image::images/n30-choose-data-mapping.png[n30-choose-data-mapping, role="integr8ly-img-responsive"]
 
 . Drag and drop the matching _Source_ Data types to all their corresponding _Targets_ as per the following screenshot. When finished, click *Done*.
 +
@@ -242,9 +240,11 @@ _Congratulations. You successfully published the integration. (Wait for few minu
 
 We will use 3scale to secure our newly deployed Fuse Online integration. We introduce a new feature, Smart Discovery, which detects that a new API was deployed to OpenShift.
 
-. Log in to link:{api-management-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
+. Log in to link:{api-management-url}[3scale Admin, window="_blank"] web console by selecting the _Authenticate through Red Hat Single Sign-On_ option.
 +
-image::images/01-login.png[01-login, role="integr8ly-img-responsive"]
+image::images/n33-3scale-login.png[01-login, role="integr8ly-img-responsive"]
+
+. Use `{user-username}` and password: `<assigned password from Instructor>` for login credentials.
 
 . The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
 
@@ -264,7 +264,19 @@ image::images/secure-06.png[secure-06, role="integr8ly-img-responsive"]
 +
 image::images/secure-07.png[secure-07, role="integr8ly-img-responsive"]
 
-. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list. Click *Integrate this API*.
+. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list.  There might be multiple _I-ADDLOCATION API_ entries as this is a multi-tenant 3scale environment shared with other students.  Click **Overview** for the newest entry at the bottom of the screen.
++
+image::images/n34-i-integration.png[secure-08, role="integr8ly-img-responsive"]
+
+. Click *edit* underneath the _Overview_ heading.
++
+image::images/n35-i-integration.png[secure-08, role="integr8ly-img-responsive"]
+
+. Update the **Name** field to be `i-addlocation-{user-username}` and click _Update Service_.  Click the 3scale logo in the top left corner to return to the main screen.
++
+image::images/n36-i-integration.png[secure-08, role="integr8ly-img-responsive"]
+
+. Click *Integrate this API*.
 +
 image::images/secure-08.png[secure-08, role="integr8ly-img-responsive"]
 
@@ -291,8 +303,8 @@ image::images/05-authentication.png[05-authentication, role="integr8ly-img-respo
 image::images/secure-09.png[secure-09, role="integr8ly-img-responsive"]
 
 . Leave the settings for _Private Base URL_ as it is. Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
-** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
+** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.{openshift-app-host}:443`*
+** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.{openshift-app-host}:443`*
 +
 image::images/secure-10.png[secure-10, role="integr8ly-img-responsive"]
 
@@ -373,11 +385,11 @@ image::images/04-setup-account.png[04-setup-account, role="integr8ly-img-respons
 +
 image::images/04-click-applications.png[04-click-applications, role="integr8ly-img-responsive"]
 
-. Click on *Create Application*.
+. Given this is a multi-tenant environment shared with many students, there may already be an i-integration application visible.  Click on *Create Application*.
 +
 image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-responsive"]
 
-. Select *basic-integration* as the _Application Plan_. Select *Default* as the _Service Plan_. Enter *i-integration* as the _Name_. Click *Create Applicatio*n. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
+. Select *basic-integration* as the _Application Plan_. Select *Default* as the _Service Plan_. Enter *i-integration-evals02* as the _Name_. Click *Create Applicatio*n. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration-evals02` application.
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
 
@@ -394,18 +406,18 @@ image::images/04-integration-configuration.png[04-integration-configuration, rol
 image::images/04-edit-api-config.png[04-edit-api-config, role="integr8ly-img-responsive"]
 
 . Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
-** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
+** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.{openshift-app-host}:443`*
+** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.{openshift-app-host}:443`*
 
 . Scroll down to the _Client_ section. Copy the full _curl_ URL in the box. Paste it into a text editor as will need it shortly.
 +
 image::images/04-copy-curl.png[04-copy-curl, role="integr8ly-img-responsive"]
 
-. Click on the *Update the Staging Environment* button to save the changes and check the connection between client, gateway and API.
+. Click on the *Update the Staging Environment* button to save the changes and check the connection between client, gateway and API.  
 +
 image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-responsive"]
 +
-_If everything works, you will get a green message on the left._
+_If everything works, you will get a green message on the left.  You may need to click this button 2-3 times until everything appears in green._
 
 . Click on *Back to Integration & Configuration* link to return to your API overview.
 +
@@ -425,7 +437,7 @@ We will use an API Tester tool to create a record field in database.
 
 . Below are the values for the request. Note: `id:101` in the payload as we are creating 101th record in the database. You will change this record number based on your user number shortly.
 ** Method: *POST*
-** URL: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443/locations?user_key=XXX [copy the information you need from the 3scale curl command you copied earlier]`*
+** URL: *`https://i-addlocation-{user-username}-apicast-staging.{openshift-app-host}:443/locations?user_key=XXX [copy the information you need from the 3scale curl command you copied earlier]`*
 ** Request Header: *`Content-Type` and `application/json`*
 ** Post Data:
 +
