@@ -37,7 +37,7 @@ Your password is: `<assigned password from Instructor>`
 * link:https://www.3scale.net[3Scale Website, window="_blank"]
 ****
 
-[time=10]
+[time=5]
 [id="create-database-connection"]
 == Create database connection
 
@@ -73,7 +73,11 @@ image::images/02-click-validate.png[02-click-validate, role="integr8ly-img-respo
 +
 image::images/03-connection-details.png[03-connection-details, role="integr8ly-img-responsive"]
 
-. Verify that the *`Location Database`* is successfully created.
+[type=verification]
+Verify that the *`Location Database`* is successfully created.
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
 
 [time=15]
 [id="no-code-api"]
@@ -168,7 +172,7 @@ image::images/n18-post-operation-id.png[n18-post-operation-id, role="integr8ly-i
 +
 _Congratulations! You've created an API Contract.  Next up is the API implementation_
 
-[time=15]
+[time=5]
 [id="implement-api"]
 == Implement the API
 
@@ -234,13 +238,13 @@ image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
 +
 _Congratulations. You successfully published the integration. (Wait for few minutes to build and publish the integration)_
 
-[time=15]
+[time=5]
 [id="secure-api-smart-discovery"]
 == Secure the API in 3scale using Smart Discovery
 
 We will use 3scale to secure our newly deployed Fuse Online integration. We introduce a new feature, Smart Discovery, which detects that a new API was deployed to OpenShift.
 
-. Log in to link:{api-management-url}[3scale Admin, window="_blank"] web console by selecting the _Authenticate through Red Hat Single Sign-On_ option.
+. Log in to link:{api-management-url}[3scale Admin, window="_blank"] web console by selecting the **Authenticate through Red Hat Single Sign-On** option.
 +
 image::images/n33-3scale-login.png[01-login, role="integr8ly-img-responsive"]
 
@@ -294,7 +298,7 @@ image::images/05-authentication.png[05-authentication, role="integr8ly-img-respo
 
 . Click on *Update Service*.
 
-[time=15]
+[time=5]
 [id="update-apicast-config"]
 == Update the APIcast configuration
 
@@ -355,7 +359,7 @@ image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-respo
 +
 _You should expect to get an error message._
 
-[time=15]
+[time=5]
 [id="create-application-plan"]
 == Create the Application Plan
 
@@ -393,7 +397,7 @@ image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-r
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
 
-[time=15]
+[time=5]
 [id="complete-apicast-config"]
 == Complete APIcast configuration
 
@@ -427,7 +431,7 @@ image::images/08aa-back-to-integration.png[08aa-back-to-integration, role="integ
 +
 image::images/08a-promote-production.png[08a-promote-production, role="integr8ly-img-responsive"]
 
-[time=15]
+[time=3]
 [id="secure-api-smart-discovery"]
 == Test the POST request
 
