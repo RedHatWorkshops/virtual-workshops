@@ -171,7 +171,7 @@ image::images/n17-post-response-type.png[n17-post-response-type, role="integr8ly
 image::images/n18-post-operation-id.png[n18-post-operation-id, role="integr8ly-img-responsive"]
 
 [type=verification]
-Did you successfully create a new API Contract?.  If so, next up is the API implementation
+Did you successfully create a new API Contract?.  If so, next up is the API implementation.
 
 [type=verificationFail]
 Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
