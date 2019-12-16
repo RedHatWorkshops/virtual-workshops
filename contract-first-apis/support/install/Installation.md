@@ -55,6 +55,7 @@ oc patch webapp tutorial-web-app-operator -n webapp --type=merge -p '{ "spec": {
 
 2. Create and populate the `international` project:
 ```
+oc new-project international --display-name "International Inc"
 oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/postgresql-ephemeral-template.json \
   --param=POSTGRESQL_USER=dbuser --param=POSTGRESQL_PASSWORD=password --param=POSTGRESQL_DATABASE=sampledb --param=POSTGRESQL_VERSION=latest -n international
 oc apply -f https://raw.githubusercontent.com/RedHatWorkshops/dayinthelife-integration/master/support/templates/spring-boot-camel-template.json -n openshift
