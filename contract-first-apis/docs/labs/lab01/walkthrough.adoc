@@ -58,7 +58,7 @@ image::images/00-create-connection.png[00-create-connection, role="integr8ly-img
 image::images/01-select-database.png[01-select-database, role="integr8ly-img-responsive"]
 
 . Enter below values for Database Configuration
-** Connection URL: *`jdbc:postgresql://postgresql.international.svc:5432/sampledb`*
+** Connection URL: *`jdbc:postgresql://postgresql.international.svc.cluster.local:5432/sampledb`*
 ** Username: *`dbuser`*
 ** Password: *`password`*
 ** Schema: *<leave blank>*
