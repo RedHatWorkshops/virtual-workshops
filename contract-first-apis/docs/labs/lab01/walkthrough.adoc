@@ -414,7 +414,7 @@ image::images/04-click-applications.png[04-click-applications, role="integr8ly-i
 +
 image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-responsive"]
 
-. Select *basic-integration* as the _Application Plan_ (found underneath `i-addlocation-{user-username}`). Select *Default* as the _Service Plan_. Enter *i-integration-evals02* as the _Name_ and also enter the same value in _Description_. Click *Create Application*. An Application page should appear. It will contain a newly created API User Key for use with your new `i-addlocation-{user-username}` application.
+. Select *basic-integration* as the _Application Plan_ (found underneath *i-addlocation-{user-username}*). Select *Default* as the _Service Plan_. Enter *i-integration-{user-username}* as the _Name_ and also enter the same value in _Description_. Click *Create Application*. An Application page should appear. It will contain a newly created API User Key for use with your new *i-addlocation-{user-username}* application.
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
 
