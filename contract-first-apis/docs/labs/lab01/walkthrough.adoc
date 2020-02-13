@@ -119,7 +119,7 @@ image::images/n06-data-type.png[n06-data-type, role="integr8ly-img-responsive"]
 image::images/n07-location-input-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
 
 . Create another datatype by clicking the *+* symbol:
-
++
 image::images/n99-new-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
 
 . Enter the following config and click *Save*.
@@ -144,7 +144,6 @@ image::images/n11-post-method.png[n11-post-method, role="integr8ly-img-responsiv
 . Edit the description of the _POST_ method to *`Add Location`* by clicking the pencil icon next to *Description*:
 +
 image::images/n12-post-description.png[n12-post-description, role="integr8ly-img-responsive"]
-
 
 . Click on *Add a request body*
 +
