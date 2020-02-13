@@ -49,7 +49,7 @@ Your password is: `<assigned password from Instructor>`
 +
 image::images/design-54.png[design-54, role="integr8ly-img-responsive"]
 
-. Click on *Connections > Create Connection*
+. Click on *Connections.  When the Connection page renders, click on the *Create Connection* button.
 +
 image::images/00-create-connection.png[00-create-connection, role="integr8ly-img-responsive"]
 
@@ -67,7 +67,7 @@ image::images/01-select-database.png[01-select-database, role="integr8ly-img-res
 +
 image::images/02-click-validate.png[02-click-validate, role="integr8ly-img-responsive"]
 
-. Add the following details, then click **Create**:
+. Add the following details, then click **Save**:
 ** Connection Name: *`LocationDB`*
 ** Description: *`Location Database`*
 +
@@ -107,7 +107,7 @@ image::images/n05-api-path.png[n05-api-path, role="integr8ly-img-responsive"]
 +
 image::images/n06-data-type.png[n06-data-type, role="integr8ly-img-responsive"]
 
-. Fill in the _Name_ field with the value *`locationinput`*. Expand the _Enter JSON Example_ to paste the following example, then click *Save*:
+. Fill in the _Name_ field with the value *`locationinput`*. Copy to the clipboard the _JSON Example_ below and paste the following example.  Leave *No Resource* selected then click *Save*:
 ** Name: *locationinput*
 ** JSON Example:
 +
@@ -118,7 +118,11 @@ image::images/n06-data-type.png[n06-data-type, role="integr8ly-img-responsive"]
 +
 image::images/n07-location-input-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
 
-. Create another datatype, this time with the following config and click *Save*.
+. Create another datatype by clicking the *+* symbol:
+
+image::images/n99-new-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
+
+. Enter the following config and click *Save*.
 ** Name: *location*
 ** JSON Example:
 +
@@ -127,17 +131,17 @@ image::images/n07-location-input-datatype.png[n07-location-input-datatype, role=
 { "id": 1, "name": "International Inc Corporate Office", "location": { "lat": 51.5013673, "lng": -0.1440787 }, "type": "headquarter", "status": "1" }
 ----
 +
-image::images/n09-location-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
+image::images/n98-location-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
 
 . You will be able to see the two datatypes created.
 +
 image::images/n10-datatype-all.png[n10-datatype-all, role="integr8ly-img-responsive"]
 
-. Click on the _Create Operation_ link under _POST_ to create a new POST operation.
+. Highlight the */locations* path, click the _POST_ tab, then click on the _Add Operation_ link.
 +
 image::images/n11-post-method.png[n11-post-method, role="integr8ly-img-responsive"]
 
-. Edit the description of the post method to *`Add Location`* and click the orange _POST_ button to edit the operation
+. Edit the description of the _POST_ method to *`Add Location`* by clicking the pencil icon next to *Description*:
 +
 image::images/n12-post-description.png[n12-post-description, role="integr8ly-img-responsive"]
 
@@ -180,11 +184,11 @@ Verify that you followed each step in the procedure above. If you are still havi
 [id="implement-api"]
 == Implement the API
 
-. On the _Start integration with an API call_ page, click the *Next* button.
+. On the _Review Actions_ page, click the *Next* button.
 +
 image::images/n19-start-of-integration.png[n19-start-of-integration, role="integr8ly-img-responsive"]
 
-. Save the integration 
+. Save the integration
 +
 image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
 
@@ -258,9 +262,7 @@ image::images/n33-3scale-login.png[01-login, role="integr8ly-img-responsive"]
 
 . Use `{user-username}` and password: `<assigned password from Instructor>` for login credentials.
 
-. The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
-
-. Click on the *New API*.
+. The first page you will land is the _API Management Dashboard_. Click on the *New API*.
 +
 image::images/secure-04.png[secure-04, role="integr8ly-img-responsive"]
 
@@ -288,7 +290,7 @@ image::images/n35-i-integration.png[secure-08, role="integr8ly-img-responsive"]
 +
 image::images/n36-i-integration.png[secure-08, role="integr8ly-img-responsive"]
 
-. Click *Integrate this API*.
+. Click *Integrate this API* next your `i-addlocation-{user-username}` API entry.
 +
 image::images/secure-08.png[secure-08, role="integr8ly-img-responsive"]
 
@@ -401,11 +403,11 @@ image::images/04-app-plan-details.png[04-app-plan-details, role="integr8ly-img-r
 +
 image::images/04-click-publish.png[04-click-publish, role="integr8ly-img-responsive"]
 
-. Click on the *API: i-addlocation* dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the *Developer* Account.
+. Click on the *API: `i-addlocation-{user-username}`* dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the *Developer* Account.
 +
 image::images/04-setup-account.png[04-setup-account, role="integr8ly-img-responsive"]
 
-. An Account configuration page should appear. Click on the _1 Application_ link at the top of the page.
+. An Account configuration page should appear. Click on the _Application_ link at the top of the page (there could be multiple applications).
 +
 image::images/04-click-applications.png[04-click-applications, role="integr8ly-img-responsive"]
 
@@ -413,7 +415,7 @@ image::images/04-click-applications.png[04-click-applications, role="integr8ly-i
 +
 image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-responsive"]
 
-. Select *basic-integration* as the _Application Plan_. Select *Default* as the _Service Plan_. Enter *i-integration-evals02* as the _Name_. Click *Create Applicatio*n. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration-evals02` application.
+. Select *basic-integration* as the _Application Plan_ (found underneath `i-addlocation-{user-username}`). Select *Default* as the _Service Plan_. Enter *i-integration-evals02* as the _Name_ and also enter the same value in _Description_. Click *Create Application*. An Application page should appear. It will contain a newly created API User Key for use with your new `i-addlocation-{user-username}` application.
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
 
@@ -443,7 +445,7 @@ image::images/04-edit-api-config.png[04-edit-api-config, role="integr8ly-img-res
 +
 image::images/04-copy-curl.png[04-copy-curl, role="integr8ly-img-responsive"]
 
-. Click on the *Update the Staging Environment* button to save the changes and check the connection between client, gateway and API.  
+. Click on the *Update the Staging Environment* button to save the changes and check the connection between client, gateway and API.
 +
 image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-responsive"]
 +
