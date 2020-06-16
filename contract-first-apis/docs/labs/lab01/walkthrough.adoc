@@ -21,35 +21,35 @@ Red Hat Fuse integration solution empowers integration experts, application deve
 *Credentials:*
 
 Your username is: `{user-username}` +
-Your password is: `<assigned password from Instructor>`
+Your password is: `{user-password}`
 
-[type=walkthroughResource,serviceName=fuse]
+[type=walkthroughResource]
 .Fuse Online
 ****
-* link:{fuse-url}[Console, window="_blank"]
+* link:{fuse-url}[Fuse Online Console, window="_blank"]
 ****
 
-[type=walkthroughResource,serviceName=3scale]
-.3Scale
+[type=walkthroughResource]
+.3scale Admin Console
 ****
-* link:{api-management-url}[Console, window="_blank"]
-* link:https://developers.redhat.com/products/3scale/overview/[3Scale Overview, window="_blank"]
-* link:https://www.3scale.net[3Scale Website, window="_blank"]
+* link:{3scale-admin-url}[Console, window="_blank"]
 ****
 
-[time=5]
+[time=10]
 [id="create-database-connection"]
 == Create database connection
 
 . Launch a new tab on your web browser.
 . Navigate to the Solution Explorer on that tab.
-. Open your link:{fuse-url}[Red Hat Fuse Online, window="_blank", id="{context}-3"].
+. Click on the *Red Hat Fuse Online (Shared)* link.
+
+. Open your link:{fuse-url}[Fuse Online Console, window="_blank"].
 
 . The first time that you hit the Fuse Online URL, you will be presented with an _Authorize Access_ page. Click the *Allow selected permissions* button to accept the defaults.
 +
 image::images/design-54.png[design-54, role="integr8ly-img-responsive"]
 
-. Click on *Connections.  When the Connection page renders, click on the *Create Connection* button.
+. Click on *Connections > Create Connection*
 +
 image::images/00-create-connection.png[00-create-connection, role="integr8ly-img-responsive"]
 
@@ -58,7 +58,7 @@ image::images/00-create-connection.png[00-create-connection, role="integr8ly-img
 image::images/01-select-database.png[01-select-database, role="integr8ly-img-responsive"]
 
 . Enter below values for Database Configuration
-** Connection URL: *`jdbc:postgresql://postgresql.international.svc.cluster.local:5432/sampledb`*
+** Connection URL: *`jdbc:postgresql://postgresql.international.svc:5432/sampledb`*
 ** Username: *`dbuser`*
 ** Password: *`password`*
 ** Schema: *<leave blank>*
@@ -67,17 +67,19 @@ image::images/01-select-database.png[01-select-database, role="integr8ly-img-res
 +
 image::images/02-click-validate.png[02-click-validate, role="integr8ly-img-responsive"]
 
-. Add the following details, then click **Save**:
+. Add the following details, then click **Create**:
 ** Connection Name: *`LocationDB`*
 ** Description: *`Location Database`*
 +
 image::images/03-connection-details.png[03-connection-details, role="integr8ly-img-responsive"]
 
+. Verify that the *`Location Database`* is successfully created.
+
 [type=verification]
-Was the *`Location Database`* successfully created?
+Were you able to add the Database connection?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
 
 [time=15]
 [id="no-code-api"]
@@ -91,7 +93,7 @@ image::images/04-create-integration.png[04-create-integration.png, role="integr8
 +
 image::images/n02-api-provider.png[n02-api-provider.png, role="integr8ly-img-responsive"]
 
-. Select *Create*
+. Select *Create from scratch*
 +
 image::images/n03-api-from-scratch.png[n03-api-from-scratch, role="integr8ly-img-responsive"]
 
@@ -107,22 +109,18 @@ image::images/n05-api-path.png[n05-api-path, role="integr8ly-img-responsive"]
 +
 image::images/n06-data-type.png[n06-data-type, role="integr8ly-img-responsive"]
 
-. Fill in the _Name_ field with the value *`locationinput`*. Copy to the clipboard the _JSON Example_ below and paste the following example.  Leave *No Resource* selected then click *Save*:
+. Fill in the _Name_ field with the value *`locationinput`*. Expand the _Enter JSON Example_ to paste the following example, then click *Save*:
 ** Name: *locationinput*
 ** JSON Example:
++
+image::images/n07-location-input-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
 +
 [source,bash]
 ----
 { "id": 1, "name": "Kamarhati", "type": "Regional Branch", "status": "1", "location": { "lat": "-28.32555", "lng": "-5.91531" } }
 ----
 +
-image::images/n07-location-input-datatype.png[n07-location-input-datatype, role="integr8ly-img-responsive"]
-
-. Create another datatype by clicking the *+* symbol:
-+
-image::images/n99-new-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
-
-. Enter the following config and click *Save*.
+. Create another datatype, this time with the following config and click *Save*.
 ** Name: *location*
 ** JSON Example:
 +
@@ -131,17 +129,17 @@ image::images/n99-new-datatype.png[n09-location-datatype, role="integr8ly-img-re
 { "id": 1, "name": "International Inc Corporate Office", "location": { "lat": 51.5013673, "lng": -0.1440787 }, "type": "headquarter", "status": "1" }
 ----
 +
-image::images/n98-location-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
+image::images/n09-location-datatype.png[n09-location-datatype, role="integr8ly-img-responsive"]
 
 . You will be able to see the two datatypes created.
 +
 image::images/n10-datatype-all.png[n10-datatype-all, role="integr8ly-img-responsive"]
 
-. Highlight the */locations* path, click the _POST_ tab, then click on the _Add Operation_ link.
+. Click on the _Create Operation_ link under _POST_ to create a new POST operation.
 +
 image::images/n11-post-method.png[n11-post-method, role="integr8ly-img-responsive"]
 
-. Edit the description of the _POST_ method to *`Add Location`* by clicking the pencil icon next to *Description*:
+. Edit the description of the post method to *`Add Location`* and click the orange _POST_ button to edit the operation
 +
 image::images/n12-post-description.png[n12-post-description, role="integr8ly-img-responsive"]
 
@@ -174,45 +172,44 @@ image::images/n17-post-response-type.png[n17-post-response-type, role="integr8ly
 image::images/n18-post-operation-id.png[n18-post-operation-id, role="integr8ly-img-responsive"]
 
 [type=verification]
-Did you successfully create a new API Contract?.  If so, next up is the API implementation.
+Were you able to create the API Contract?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
 
-[time=5]
+_Congratulations! You've created an API Contract.  Next up is the API implementation_
+
+[time=15]
 [id="implement-api"]
 == Implement the API
 
-. On the _Review Actions_ page, click the *Next* button.
+. On the _Start integration with an API call_ page, click the *Next* button.
 +
 image::images/n19-start-of-integration.png[n19-start-of-integration, role="integr8ly-img-responsive"]
 
 . Save the integration
-+
-image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
++image::images/n19b-save.png[n19b-save.png, role="integr8ly-img-responsive"]
 
 
 . Set the following values:
 ** Integration Name: *`addLocation`*
 ** Description: *`Add Location`*
-Click *Save*
+Click *`save`*
 +
 image::images/n20-integration-name.png[n20-integration-name, role="integr8ly-img-responsive"]
 
 . Click on *Create flow*
-+
-image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
++image::images/n19a-create-flow.png[n19a-create, role="integr8ly-img-responsive"]
 
 
-. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint.
-+
-image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
+. Since we are adding incoming data into the database, click on the plus sign in between API entry point and return endpoint, then select *Add connection*.
++image::images/n22-add-db-connection.png[n22-add-db-connection, role="integr8ly-img-responsive"]
 
 . Click on *LocationDB* from the catalog and then select *Invoke SQL*
 +
 image::images/n24-invoke-sql.png[n24-invoke-sql, role="integr8ly-img-responsive"]
 
-. Enter the SQL statement and click *Next* (leaving *Batch update* set to `No`).
+. Enter the SQL statement and click *Done*.
 +
 [source,bash]
 ----
@@ -221,7 +218,7 @@ INSERT INTO locations (id,name,lat,lng,location_type,status) VALUES (:#id,:#name
 +
 image::images/n25-sql-statement.png[n25-sql-statement, role="integr8ly-img-responsive"]
 
-. In between top API endpoint and the Database connection, click on the plus sign and select _Data Mapper_
+. In between top API endpoint and the Database connection, click on the plus sign and select _Add step_ and select _Data Mapper_
 +
 image::images/n26-input-data-mapping.png[n26-input-data-mapping, role="integr8ly-img-responsive"]
 +
@@ -231,9 +228,11 @@ image::images/n27-choose-data-mapping.png[n27-choose-data-mapping, role="integr8
 +
 image::images/n28-data-map-db.png[n28-data-map-db, role="integr8ly-img-responsive"]
 
-. In between the Database connection and the endpoint, click on the plus sign and select _Data Mapper_
+. In between the Database connection and the endpoint, click on the plus sign and select _Add step_ and select _Data Mapper_
 +
 image::images/n29-output-data-mapping.png[n29-output-data-mapping, role="integr8ly-img-responsive"]
++
+image::images/n30-choose-data-mapping.png[n30-choose-data-mapping, role="integr8ly-img-responsive"]
 
 . Drag and drop the matching _Source_ Data types to all their corresponding _Targets_ as per the following screenshot. When finished, click *Done*.
 +
@@ -244,24 +243,26 @@ image::images/n31-data-map-response.png[n31-data-map-response, role="integr8ly-i
 image::images/n32-publish.png[n32-publish, role="integr8ly-img-responsive"]
 
 [type=verification]
-Did you successfully publish the integration? (Wait for few minutes to build and publish the integration)
+Were you able to publish the Integration?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
 
-[time=5]
+_Congratulations. You successfully published the integration. (Wait for few minutes to build and publish the integration)_
+
+[time=15]
 [id="secure-api-smart-discovery"]
 == Secure the API in 3scale using Smart Discovery
 
 We will use 3scale to secure our newly deployed Fuse Online integration. We introduce a new feature, Smart Discovery, which detects that a new API was deployed to OpenShift.
 
-. Log in to link:{api-management-url}[3scale Admin, window="_blank"] web console by selecting the **Authenticate through Red Hat Single Sign-On** option.
+. Log in to link:{3scale-admin-url}[3scale Admin, window="_blank"] web console using `{user-username}` and password: `{user-password}`.
 +
-image::images/n33-3scale-login.png[01-login, role="integr8ly-img-responsive"]
+image::images/01-login.png[01-login, role="integr8ly-img-responsive"]
 
-. Use `{user-username}` and password: `<assigned password from Instructor>` for login credentials.
+. The first page you will land is the _API Management Dashboard_. Click on the *API* menu link.
 
-. The first page you will land is the _API Management Dashboard_. Click on the *New API*.
+. Click on the *New API*.
 +
 image::images/secure-04.png[secure-04, role="integr8ly-img-responsive"]
 
@@ -277,19 +278,7 @@ image::images/secure-06.png[secure-06, role="integr8ly-img-responsive"]
 +
 image::images/secure-07.png[secure-07, role="integr8ly-img-responsive"]
 
-. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list.  There might be multiple _I-ADDLOCATION API_ entries as this is a multi-tenant 3scale environment shared with other students.  Click **Overview** for the newest entry at the bottom of the screen.
-+
-image::images/n34-i-integration.png[secure-08, role="integr8ly-img-responsive"]
-
-. Click *edit* underneath the _Overview_ heading.
-+
-image::images/n35-i-integration.png[secure-08, role="integr8ly-img-responsive"]
-
-. Update the **Name** field to be `i-addlocation-{user-username}` and click _Update Service_.  Click the 3scale logo in the top left corner to return to the main screen.
-+
-image::images/n36-i-integration.png[secure-08, role="integr8ly-img-responsive"]
-
-. Click *Integrate this API* next your `i-addlocation-{user-username}` API entry.
+. The page should return to the dashboard. Refresh the page. Notice that the _I-ADDLOCATION API_ has been added to the list. Click *Integrate this API*.
 +
 image::images/secure-08.png[secure-08, role="integr8ly-img-responsive"]
 
@@ -308,12 +297,13 @@ image::images/05-authentication.png[05-authentication, role="integr8ly-img-respo
 . Click on *Update Service*.
 
 [type=verification]
-Did your *Service* update correctly?
+Were you able to update the service?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the Fuse Online application.
 
-[time=5]
+
+[time=15]
 [id="update-apicast-config"]
 == Update the APIcast configuration
 
@@ -322,8 +312,8 @@ Verify that you followed each step in the procedure above. If you are still havi
 image::images/secure-09.png[secure-09, role="integr8ly-img-responsive"]
 
 . Leave the settings for _Private Base URL_ as it is. Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
-** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.{openshift-app-host}:443`*
+** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
+** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
 +
 image::images/secure-10.png[secure-10, role="integr8ly-img-responsive"]
 
@@ -375,12 +365,13 @@ image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-respo
 _You should expect to get an error message._
 
 [type=verification]
-Did you get an error message asking you to create an Application Plan?
+Were you able to update the staging environment?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
 
-[time=5]
+
+[time=15]
 [id="create-application-plan"]
 == Create the Application Plan
 
@@ -402,29 +393,33 @@ image::images/04-app-plan-details.png[04-app-plan-details, role="integr8ly-img-r
 +
 image::images/04-click-publish.png[04-click-publish, role="integr8ly-img-responsive"]
 
-. Click on the *API: `i-addlocation-{user-username}`* dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the *Developer* Account.
+. Click on the *API: i-addlocation* dropdown menu, then select *Audience*. Next click *Listing* on the side menu. A listing of _Accounts_ should appear. Next click the *Developer* Account.
 +
 image::images/04-setup-account.png[04-setup-account, role="integr8ly-img-responsive"]
 
-. An Account configuration page should appear. Click on the _Application_ link at the top of the page (there could be multiple applications).
+. An Account configuration page should appear. Click on the _1 Application_ link at the top of the page.
 +
 image::images/04-click-applications.png[04-click-applications, role="integr8ly-img-responsive"]
 
-. Given this is a multi-tenant environment shared with many students, there may already be an i-integration application visible.  Click on *Create Application*.
+. Click on *Create Application*.
 +
 image::images/04-click-create-app.png[04-click-create-app, role="integr8ly-img-responsive"]
 
-. Select *basic-integration* as the _Application Plan_ (found underneath *i-addlocation-{user-username}*). Select *Default* as the _Service Plan_. Enter *i-integration-{user-username}* as the _Name_ and also enter the same value in _Description_. Click *Create Application*. An Application page should appear. It will contain a newly created API User Key for use with your new *i-addlocation-{user-username}* application.
+. Select *basic-integration* as the _Application Plan_.
+. Select *Default* as the _Service Plan_.
+. Enter *i-integration* as the _Name_.
+. Click *Create Application*. An Application page should appear. It will contain a newly created API User Key for use with your new `i-integration` application.
 +
 image::images/04-enter-app-details.png[04-enter-app-details, role="integr8ly-img-responsive"]
 
 [type=verification]
-Did you see a newly created *User Key*?
+Were you able to create the application?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
 
-[time=5]
+
+[time=15]
 [id="complete-apicast-config"]
 == Complete APIcast configuration
 
@@ -437,8 +432,8 @@ image::images/04-integration-configuration.png[04-integration-configuration, rol
 image::images/04-edit-api-config.png[04-edit-api-config, role="integr8ly-img-responsive"]
 
 . Update the _Staging Public Base URL_ and _Production Public Base URL_ fields to the following:
-** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.{openshift-app-host}:443`*
-** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.{openshift-app-host}:443`*
+** Staging Public Base: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443`*
+** Production Public Base URL: *`https://i-addlocation-{user-username}-apicast-production.amp.{openshift-app-host}:443`*
 
 . Scroll down to the _Client_ section. Copy the full _curl_ URL in the box. Paste it into a text editor as will need it shortly.
 +
@@ -448,7 +443,7 @@ image::images/04-copy-curl.png[04-copy-curl, role="integr8ly-img-responsive"]
 +
 image::images/08-update-staging.png[08-update-staging, role="integr8ly-img-responsive"]
 +
-_If everything works, you will get a green message on the left.  You may need to click this button 2-3 times until everything appears in green._
+_If everything works, you will get a green message on the left._
 
 . Click on *Back to Integration & Configuration* link to return to your API overview.
 +
@@ -459,12 +454,13 @@ image::images/08aa-back-to-integration.png[08aa-back-to-integration, role="integ
 image::images/08a-promote-production.png[08a-promote-production, role="integr8ly-img-responsive"]
 
 [type=verification]
-Were you able to promote your API to Production?
+Were you able to promote your configuration?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pod that contains the 3scale API Management application.
 
-[time=3]
+
+[time=15]
 [id="secure-api-smart-discovery"]
 == Test the POST request
 
@@ -474,7 +470,7 @@ We will use an API Tester tool to create a record field in database.
 
 . Below are the values for the request. Note: `id:101` in the payload as we are creating 101th record in the database. You will change this record number based on your user number shortly.
 ** Method: *POST*
-** URL: *`https://i-addlocation-{user-username}-apicast-staging.{openshift-app-host}:443/locations?user_key=XXX [copy the information you need from the 3scale curl command you copied earlier]`*
+** URL: *`https://i-addlocation-{user-username}-apicast-staging.amp.{openshift-app-host}:443/locations?user_key=XXX [copy the information you need from the 3scale curl command you copied earlier]`*
 ** Request Header: *`Content-Type` and `application/json`*
 ** Post Data:
 +
@@ -513,10 +509,10 @@ image::images/17-activity-refresh.png[17-activity-refresh, role="integr8ly-img-r
   }`
 
 [type=verification]
-Were you able to see your newly created entry via the application URL in the browser?
+Were you able to receive the correct response?
 
 [type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+Try to redo this section, if any problem persists have your instructor check the Kubernetes pods involved.
 
 [time=1]
 [id="summary"]
