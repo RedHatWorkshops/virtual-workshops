@@ -109,17 +109,15 @@ image::images/addressspace-detail.png[AddressSpace Definition, role="integr8ly-i
 
 . The AMQ operator will check the new resource and will begin to prepare all required components.
 +
---
 [IMPORTANT]
 ====
 Wait for the *Address Space* to deploy the infrastructure until the status changes to _Active_ and shows the *green* checkmark.
 ====
-
++
 [NOTE]
 ====
 This could take a few minutes to finish.  If it looks like taking longer, then refresh the page.
 ====
---
 
 [type=verification]
 Were you able to successfully provision the Address Space?
@@ -172,13 +170,9 @@ Verify that you followed each step in the procedure above. If you are still havi
 
 === Determine AMQ Online hostname
 
-. Navigate to the {openshift-host}[OpenShift Developer Console, window="_blank", id="{context}-3"] and login with your OpenShift credentials
-
-  Your username is: `{user-username}` +
-  Your password is: `{user-password}`
+. Navigate to the {openshift-host}[OpenShift Developer Console, window="_blank", id="{context}-3"] and login with your OpenShift credentials (`{user-username}` + `{user-password}`)
 
 . Locate *Search* under *Advance*
-
 +
 image::images/1.1.11-find-search.png[1.1.11-find-search, role="integr8ly-img-responsive"]
 
@@ -193,22 +187,20 @@ image::images/1.1.13-addressspace-amq.png[1.1.13-addressspace-amq, role="integr8
 . Click on tab *YAML*, and copy the *serviceHost* for later use.
 +
 image::images/1.1.14-serive-host-port.png[1.1.14-serive-host-port, role="integr8ly-img-responsive"]
-
++
 [NOTE]
 ====
 When we created the Address Space, we configure it to _export_ the connection configuration using a *ConfigMap*. This configuration is available for our microservices to inject the connecting details so we don't need to hardcode them in the code.
 ====
---
 
 . Scroll down the page to reveal the _configmap_ details.  For this workshop, we will run all our services within the OpenShift cluster, so copy and write down only the `service.host` information.
 +
 image::images/addressspace-service-host.png[topics, role="integr8ly-img-responsive"]
-
++
 [TIP]
 ====
 You will also be able to see the _certificate_ information for connecting using the TLS endpoint under `external.host`. This is required for connections from _outside_ the OpenShift cluster.
 ====
---
 
 *Well done!* You now have a running AMQ with your new topic called `mytopic`.
 
