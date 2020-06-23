@@ -23,10 +23,6 @@ To solve complex cloud-native integration challenges, we need to apply EIPs to m
 
 By using Camel-K, we can enhance data streaming and apply traditional EIPs to solve cloud-native integration.
 
-*Prerequisites*
-
-This lab assumes you have successfully completed Lab 1 & 2.
-
 *Credentials*
 
 Your username is: `{user-username}` +
@@ -193,13 +189,13 @@ image::images/1.1.14-serive-host-port.png[1.1.14-serive-host-port, role="integr8
 When we created the Address Space, we configure it to _export_ the connection configuration using a *ConfigMap*. This configuration is available for our microservices to inject the connecting details so we don't need to hardcode them in the code.
 ====
 
-. Scroll down the page to reveal the _configmap_ details.  For this workshop, we will run all our services within the OpenShift cluster, so copy and write down only the `service.host` information.
+. Scroll down the page to reveal the _configmap_ details.  For this workshop, we will run all our services within the OpenShift cluster, so copy and write down only the `serviceHost` information.
 +
 image::images/addressspace-service-host.png[topics, role="integr8ly-img-responsive"]
 +
 [TIP]
 ====
-You will also be able to see the _certificate_ information for connecting using the TLS endpoint under `external.host`. This is required for connections from _outside_ the OpenShift cluster.
+You will also be able to see the _certificate_ information for connecting using the TLS endpoint under `externalHost`. This is required for connections from _outside_ the OpenShift cluster.
 ====
 
 *Well done!* You now have a running AMQ with your new topic called `mytopic`.
@@ -276,7 +272,7 @@ image::images/openshift-kafka-resource.png[OpenShift Kafka Resource, role="integ
 +
 image:images/openshift-kafkas-list.png[Back To Topology]
 
-. Wait for cluster to start it can take a few minutes as the operator will deploy your Kafka cluster infrastructure and related operators to manage it.
+. Wait for cluster to start.  It can take a few minutes as the operator will deploy your Kafka cluster infrastructure and related operators to manage it.
 +
 image:images/openshift-kafka-topology.png[Kafka Topology]
 
@@ -609,6 +605,8 @@ oc apply -f standardshipping-config.yaml
 +
 image::images/4.1.8-standard-java-update.png[4.1.8-standard-java-update, role="integr8ly-img-responsive"]
 
+. Open `PremiumShipping.java` again.  Update the kafka topic name to `{user-username}-premium` in the Camel route.
+
 . Now that we have updated all the config files and code, we need to test our Camel-K routes.  Return to the *dil-* terminal and execute the following command:
 +
 [source,bash,subs="attributes+"]
@@ -695,7 +693,7 @@ image::images/6.1.1-grafana-route.png[6.1.1-grafana-route, role="integr8ly-img-r
 
 . Login to Grafana using the credentials `admin/admin`.  If prompted to change your password, set it back to `admin` again.
 
-. Now that you are logged into Grafana, we need to create a datasource. Click the `Create your first data source link`, then select **PostgreSQL**.
+. Now that you are logged into Grafana, we need to create a datasource. Click the `Add data source` link, then select **PostgreSQL**.
 +
 image::images/6.1.3-select-datasource.png[6.1.3-select-datasource, role="integr8ly-img-responsive"]
 
@@ -732,8 +730,6 @@ Verify that you followed each step in the procedure above. If you are still havi
 In this lab you exposed inventory data via RestDSL, cached data from a Data Lake using InfiniSpan, then graphed the results using live data metrics in Grafana.
 
 Open source connectors enable integrations with your local systems landscape. Explore InfiniSpan, Camel-K, and Grafana to connect APIs and services for event-driven application architectures (EDA). Red Hat offers supported versions of these connectors via Fuse and DataGrid.
-
-You can now proceed to link:{next-lab-url}[Lab 4].
 
 [time=4]
 [id="further-reading"]
