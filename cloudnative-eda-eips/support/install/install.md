@@ -57,8 +57,8 @@ The recommended way to install the workshop is running the ansible playbook from
     ...ignoring
     ```
 
-    1. Patch the Tutorial webapp to point to the correct virtual walkthrough:
+1. Patch the Tutorial webapp to point to the correct virtual walkthrough:
 
     ```
-    oc patch webapp tutorial-web-app-operator -n webapp --type=merge -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/RedHatWorkshops/virtual-workshops.git?walkthroughsFolder=/cloudnative-eda-eips/docs/labs" }}}}'
+    oc patch WebApp tutorial-web-app -n webapp --type=merge -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/RedHatWorkshops/virtual-workshops.git?walkthroughsFolder=/cloudnative-eda-eips/docs/labs" }}}}'
     ```
