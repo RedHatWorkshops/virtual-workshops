@@ -39,19 +39,19 @@ Your password is: `{user-password}`
 ****
 
 [type=walkthroughResource]
-.AmqOnline
+.AMQ Online
 ****
 * link:{amqoneline-url}/[Open AMQ Online Console, window="_blank"]
 ****
 
 [type=walkthroughResource,serviceName=openshift]
-.Openshift
+.Openshift Admin Console
 ****
-* link:{openshift-host}/[Open Console, window="_blank"]
+* link:{openshift-host}/[Open Openshift Admin Console, window="_blank"]
 ****
 
-[time=15]
-[id="Create AMQ Topics"]
+[time=10]
+[id="Create AMQ Online Topics"]
 == Create your AMQ Online Topic
 
 *Red Hat AMQ Online* is an OpenShift-based mechanism for delivering messaging as a managed service. With Red Hat AMQ Online, administrators can configure a cloud-native, multi-tenant messaging service where developers can provision messaging using a _web console_. Multiple development teams can provision the brokers and queues from the console, *without* requiring each team to _install, configure, deploy, maintain, or patch any software_.
@@ -62,7 +62,7 @@ Let's create an AMQ Online **Address Space** using the AMQ Online Operator.
 
 . Open the OpenShift Developer Console link:{openshift-host}/topology/ns/{user-username}[Topology View, window="_blank"]
 
-. Click *+Add* on the left menu.
+. From the Project drop-down, select **{user-username}** as the project name. Click *+Add* on the left menu.
 +
 image::images/openshift-add.png[OpenShift +Add, role="integr8ly-img-responsive"]
 
@@ -121,6 +121,14 @@ This could take a few minutes to finish.  If it looks like taking longer, then r
 ====
 --
 
+[type=verification]
+Were you able to successfully provision the Address Space?
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+
+=== Create a Messaging Topic
+
 . Click on the bricked icon on the top right side of the screen to get the consoles menu. The Messaging Console should now be available there.
 +
 image::images/openshift-messaging-console.png[Messaging Console, role="integr8ly-img-responsive"]
@@ -144,7 +152,7 @@ image::images/1.1.7-create-topic.png[1.1.7-create-topic, role="integr8ly-img-res
 . Enter the following details, then click *Next*:
 ** Name: *`mytopic`*
 ** Type: *topic*
-** Plan: *Stnadard Small Topic*
+** Plan: *Small Topic*
 +
 image::images/1.1.8-topic-details.png[1.1.8-topic-details, role="integr8ly-img-responsive"]
 
@@ -156,6 +164,14 @@ image::images/1.1.9-topic-details.png[1.1.9-topic-details, role="integr8ly-img-r
 +
 image::images/1.1.10-topic-provisioned.png[1.1.10-topic-provisioned, role="integr8ly-img-responsive"]
 
+[type=verification]
+Were you able to successfully provision the topic in AMQ Online?
+
+[type=verificationFail]
+Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
+
+=== Determine AMQ Online hostname
+
 . Navigate to the {openshift-host}[OpenShift Developer Console, window="_blank", id="{context}-3"] and login with your OpenShift credentials
 
   Your username is: `{user-username}` +
@@ -165,7 +181,6 @@ image::images/1.1.10-topic-provisioned.png[1.1.10-topic-provisioned, role="integ
 
 +
 image::images/1.1.11-find-search.png[1.1.11-find-search, role="integr8ly-img-responsive"]
-
 
 . On the top search bar, select *service* and type to search *AddressSpace*, select the *AddressSpace* when appears in the drop down menu.
 +
@@ -187,7 +202,6 @@ When we created the Address Space, we configure it to _export_ the connection co
 
 . Scroll down the page to reveal the _configmap_ details.  For this workshop, we will run all our services within the OpenShift cluster, so copy and write down only the `service.host` information.
 +
---
 image::images/addressspace-service-host.png[topics, role="integr8ly-img-responsive"]
 
 [TIP]
@@ -196,79 +210,13 @@ You will also be able to see the _certificate_ information for connecting using 
 ====
 --
 
-*Well done!* You now have a running AMQ with two topics called `incomingorders` and `notifications`.
+*Well done!* You now have a running AMQ with your new topic called `mytopic`.
 
 [type=verification]
 Did you remember to write down the address space `service.host`?
 
 [type=verificationFail]
 {standard-fail-text}
-
-
-[time=10]
-[id="provision-amq-topic"]
-== Provision AMQ Topic
-
-In this task, you'll provision a messaging topic using Red Hat's Messaging as a Service platform on OpenShift (AMQ Online).
-
-=== Access OpenShift Console
-
-. Navigate to the {amqoneline-url}[AMQ Online Console, window="_blank", id="{context}-3"]
-
-. Login to using your credentials (`{user-username}` and `{user-password}`).
-
-. Click *amq* listed on the page this will take you to the
-+
-image::images/1.1.3-amq-console.png[1.1.3-amq-console, role="integr8ly-img-responsive"]
-
-. Click the *Create Address* button to create the topic.
-+
-image::images/1.1.7-create-topic.png[1.1.7-create-topic, role="integr8ly-img-responsive"]
-
-. Enter the following details, then click *Next*:
-** Name: *`mytopic`*
-** Type: *topic*
-** Plan: *Stnadard Small Topic*
-+
-image::images/1.1.8-topic-details.png[1.1.8-topic-details, role="integr8ly-img-responsive"]
-
-. Review your configuration and click on Finish
-+
-image::images/1.1.9-topic-details.png[1.1.9-topic-details, role="integr8ly-img-responsive"]
-
-. Please wait a few minutes for the topic to provision.  Once the queue is provisioned, the topic name (`mytopic`) should have a green checkmark next to it.
-+
-image::images/1.1.10-topic-provisioned.png[1.1.10-topic-provisioned, role="integr8ly-img-responsive"]
-
-. Navigate to the {openshift-host}[OpenShift Developer Console, window="_blank", id="{context}-3"] and login with your OpenShift credentials
-
-  Your username is: `{user-username}` +
-  Your password is: `{user-password}`
-
-. Locate *Search* under *Advance*
-
-+
-image::images/1.1.11-find-search.png[1.1.11-find-search, role="integr8ly-img-responsive"]
-
-
-. On the top search bar, select *service* and type to search *AddressSpace*, select the *AddressSpace* when appears in the drop down menu.
-+
-image::images/1.1.12-search-addressspace.png[1.1.12-search-addressspace, role="integr8ly-img-responsive"]
-
-. Click on *amq*
-+
-image::images/1.1.13-addressspace-amq.png[1.1.13-addressspace-amq, role="integr8ly-img-responsive"]
-
-. Click on tab *YAML*, and copy the *serviceHost* for later use.
-+
-image::images/1.1.14-serive-host-port.png[1.1.14-serive-host-port, role="integr8ly-img-responsive"]
-
-
-[type=verification]
-Were you able to successfully provision the topic in AMQ Online?
-
-[type=verificationFail]
-Verify that you followed each step in the procedure above. If you are still having issues, contact your administrator.
 
 [time=15]
 [id="startup-che-workspace"]
